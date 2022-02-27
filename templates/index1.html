@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Declutter, The Clutter</title>
+      <!link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+   </head>
+
+   <body>
+      <!body style="background-image: url('./static/homepage.png'); background-repeat: no-repeat; background-size: cover;">
+      <h1 class="logo">Student EEG based Confusion Classifier</h1>
+	<br>
+	<br>
+
+	<h2>Please upload the file for processing</h2>
+	<br>
+	<br>
+	
+      
+
+      <form class="p-3 text-center" action='/predict', method="post" enctype="multipart/form-data">
+          <input class="form-control" type="file" name="eegfile">
+          <br>
+          <br>
+          <!input class="form-control" type="file" name="dgfile">
+          <button class="btn btn-lg btn-primary btn-block" type="submit" name="upload" "background-color= "#4CAF50">Upload</button>
+          <!input class="btn btn-primary mt-3" type="submit" value="Upload">
+
+
+          
+      </form>
+
+           {% if error %}
+	     <p style="color:#ff0000"; font-weight: bold; font-size: 18px">{{error}}</p>     
+           
+           
+           {% endif %}
+ 
+          <h3><a href="/"> Return to Informational page</a><h3>
+
+
+   </body>
+</html>

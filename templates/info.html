@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>Declutter, The Clutter</title>
+      <!link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+   </head>
+
+   <body>
+      <h1> Informational Page - Student EEG based Confusion Classifier</h1>
+      <br>
+      <br>
+      <p style="font-weight: normal; font-size: 18px"> - This is a simple Binary classifier based on Student EEG signals.</p>
+
+      <p style="font-weight: normal; font-size: 18px"> - Upload a .csv file with fields - SubjectID, VideoID, Attention,Mediation, Raw, Delta, Theta, Alpha1, Alpha2,	Beta1, Beta2, Gamma1, Gamma2. </p>
+      
+      <p style="font-weight: normal; font-size: 18px"> - A minimum of 72 timesteps is the basic requirement for this classifier.</p>
+      
+      <p p style="font-weight: normal; font-size: 18px"> - The classifier classifies Student as either - Confused or Not Confused along with certain probability. </p>
+
+      <h3><a href="/index"> Proceed to Upload page </a><h3>
+
+</body>
+</html>

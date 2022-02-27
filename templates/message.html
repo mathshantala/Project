@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Declutter, The Clutter</title>
+      <!link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+   </head>
+
+   <body>
+      
+
+      <h1 class="text-center">Results - Student EEG based Confusion Classifier</h1>
+
+          {% if message %}
+          <p style="font-weight: normal; font-size: 18px"> {{message}} </p>
+          {% endif %}
+
+          {% if results %}
+          <p style="text-center; color:#0000ff; font-size: 18px">1. The summary of processed EEG signals:</p> 
+          
+          {% for i in results %} 
+              <p style="text-center; font-size: 18px"> {{i}}</p>
+          {% endfor %}
+
+          {% endif %}
+
+
+          {% if combinations %}  
+          <br>
+          <br>
+          <p style="text-center; color:#0000ff; font-size: 18px">2. Following Student-Video Ids are unprocessed as timesteps<75:</p>
+
+          {% for i in combinations %} 
+              <p style="text-center; font-size: 18px"> {{i}}</p>
+          {% endfor %}
+
+          {% endif %}
+        
+          <h3><a href="/index"> Return to Upload page</a><h3>
+
+
+   </body>
+</html>
