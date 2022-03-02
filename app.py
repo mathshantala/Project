@@ -285,11 +285,11 @@ def predict():
             error="Cannot process EEG data as duplicate csv files have been uploaded." '''
         if (len(eegData)<75): #At over all EEG file level
             error="Cannot process EEG data as a minimum of 75 timesteps is required."
-	    return render_template('index1.html', error=error)
+            return render_template('index1.html', error=error)
 
         if ((eegData.isnull().values.any()==True) or (eegData.isnull().sum().sum()!=0) or (np.isinf(eegData).values.sum()!=0)):
             error="Cannot process EEG data as NULLs or NAs are present" 
-	    return render_template('index1.html', error=error)
+            return render_template('index1.html', error=error)
 
 
         '''Ensures that a minimum of 75 timesteps are present for each Subject-VideoId
@@ -299,7 +299,7 @@ def predict():
         eegCounts=pd.DataFrame(eegData[['SubjectID', 'VideoID']].value_counts()>=75)
         if (len(eegCounts)==0):
             error="Cannot process the EEG data as the Subject-VideoId combinations have timesteps<75"
-	    return render_template('index1.html', error=error)
+            return render_template('index1.html', error=error)
         else:
             eegData=eegData.merge(eegCounts[eegCounts[0]==True], on=['SubjectID', 'VideoID'], how='inner')
             notProcessed=eegCounts[eegCounts[0]==False].index.to_frame(index=False)
