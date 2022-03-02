@@ -261,8 +261,7 @@ def predict():
         #file2Columns=file2.columns.to_list()
         
 
-        '''Assign the file based on the files content. 
-        Handles if files are not uploaded in an order'''
+        '''Verfies the file content'''
         
         if (file1.columns.to_list()==eegColumns):
             eegData=file1
@@ -280,12 +279,18 @@ def predict():
         #Basic checks on files uploaded before the data is processed
         if ((len(eegData)==0)): # or (len(dgInfo)==0)):
             error="The EEG file has no data to process."
+	    return render_template('index1.html', error=error)
+
         '''if (eegData.equals(dgInfo)):
             error="Cannot process EEG data as duplicate csv files have been uploaded." '''
         if (len(eegData)<75): #At over all EEG file level
             error="Cannot process EEG data as a minimum of 75 timesteps is required."
+	    return render_template('index1.html', error=error)
+
         if ((eegData.isnull().values.any()==True) or (eegData.isnull().sum().sum()!=0) or (np.isinf(eegData).values.sum()!=0)):
             error="Cannot process EEG data as NULLs or NAs are present" 
+	    return render_template('index1.html', error=error)
+
 
         '''Ensures that a minimum of 75 timesteps are present for each Subject-VideoId
         combination. Only those Subject-VideoId combinations are processed that meet 
@@ -294,6 +299,7 @@ def predict():
         eegCounts=pd.DataFrame(eegData[['SubjectID', 'VideoID']].value_counts()>=75)
         if (len(eegCounts)==0):
             error="Cannot process the EEG data as the Subject-VideoId combinations have timesteps<75"
+	    return render_template('index1.html', error=error)
         else:
             eegData=eegData.merge(eegCounts[eegCounts[0]==True], on=['SubjectID', 'VideoID'], how='inner')
             notProcessed=eegCounts[eegCounts[0]==False].index.to_frame(index=False)
