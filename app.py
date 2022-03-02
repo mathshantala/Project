@@ -279,7 +279,7 @@ def predict():
         #Basic checks on files uploaded before the data is processed
         if ((len(eegData)==0)): # or (len(dgInfo)==0)):
             error="The EEG file has no data to process."
-	    return render_template('index1.html', error=error)
+            return render_template('index1.html', error=error)
 
         '''if (eegData.equals(dgInfo)):
             error="Cannot process EEG data as duplicate csv files have been uploaded." '''
