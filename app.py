@@ -226,7 +226,11 @@ def predict():
             error="Choose the file before clicking on Upload."
             return render_template('index1.html', error=error)
 
-        if eegfile.filename!='eegfile':
+        if checkFileExt(eegfile.filename)==False: #or checkFileExt(dgfile.filename)==False:
+            error="Incorrect file type uploaded. Please upload the file with a .csv extension."
+            return render_template('index1.html', error=error)
+
+        if eegfile.filename!='eegfile.csv':
             error="Please provide appropriate file name and upload."
             return render_template('index1.html', error=error)
 
@@ -234,9 +238,6 @@ def predict():
             error="Duplicate files uploaded, cannot process the data."
             return render_template('index1.html', error=error)'''
 
-        if checkFileExt(eegfile.filename)==False: #or checkFileExt(dgfile.filename)==False:
-            error="Incorrect file type uploaded. Please upload the file with a .csv extension."
-            return render_template('index1.html', error=error)
 
         eegfile.save(eegfile_path)
         #dgfile.save(dgfile_path)
