@@ -213,8 +213,7 @@ def predict():
     if request.method=='POST':
         if 'eegfile' not in request.files: #or 'dgfile' not in request.files:
             error='File is not yet uploaded!'
-            return render_template('index1.html', error=error) 	
-	  
+            return render_template('index1.html', error=error)	  
 
 
         eegfile=request.files['eegfile']
@@ -226,8 +225,8 @@ def predict():
         if eegfile.filename=='': #or dgfile.filename=='':
             error="Choose the file before clicking on Upload."
             return render_template('index1.html', error=error)
-	
-	if eegfile.filename!='eegfile':
+
+        if eegfile.filename!='eegfile':
             error="Please provide appropriate file name and upload."
             return render_template('index1.html', error=error)
 
