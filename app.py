@@ -226,6 +226,10 @@ def predict():
         if eegfile.filename=='': #or dgfile.filename=='':
             error="Choose the file before clicking on Upload."
             return render_template('index1.html', error=error)
+	
+	if eegfile.filename!='eegfile':
+            error="Please provide appropriate file name and upload."
+            return render_template('index1.html', error=error)
 
         '''if eegfile.filename==dgfile.filename:
             error="Duplicate files uploaded, cannot process the data."
@@ -288,7 +292,7 @@ def predict():
             return render_template('index1.html', error=error)
 
         if ((eegData.isnull().values.any()==True) or (eegData.isnull().sum().sum()!=0) or (np.isinf(eegData).values.sum()!=0)):
-            error="Cannot process EEG data as NULLs or NAs are present" 
+            error="Cannot process EEG data as NULLs or NAs or infs are present" 
             return render_template('index1.html', error=error)
 
 
